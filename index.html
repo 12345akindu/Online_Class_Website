@@ -172,6 +172,58 @@
       opacity: 0.3;
       z-index: 0;
     }
+.teacher-image-container {
+  width: 120px;
+  height: 120px;
+  position: relative;
+}
+
+.teacher-image {
+  width: 100%;
+  height: 100%;
+  border: 4px solid white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.teacher-name-overlay {
+  position: absolute;
+  bottom: -25px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 5px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.teacher-name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #4f46e5;
+  white-space: nowrap;
+}
+
+.subject-card:hover .teacher-name-overlay {
+  bottom: -20px;
+  opacity: 1;
+}
+
+.card-decoration {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  filter: blur(20px);
+  opacity: 0.7;
+  transition: all 0.5s ease;
+  z-index: -1;
+}
+
+.subject-card:hover .card-decoration {
+  transform: scale(1.2);
+  opacity: 0.9;
+}
   </style>
 </head>
 <body class="min-h-screen flex flex-col items-center justify-start pt-8 pb-16 px-4 relative overflow-x-hidden">
@@ -185,11 +237,11 @@
       <!-- Science -->
       <a href="science.html" class="subject-card">
         <div class="card-content flex flex-col items-center">
-          <div class="subject-icon-container bg-blue-100 p-5 rounded-full mb-6">
-            <img src="https://cdn-icons-png.flaticon.com/512/201/201623.png" alt="Science" class="w-16 h-16 sm:w-20 sm:h-20 subject-icon">
-          </div>
-          <h2 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-2">විද්‍යාව</h2>
-          <p class="text-sm sm:text-base text-gray-600 text-center mb-4">ස්වභාවධර්මය පිළිබඳ අධ්‍යයනය</p>
+        <h2 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-2">විද්‍යාව</h2>
+        <p class="text-sm sm:text-base text-gray-600 text-center mb-4">ජීව,රසායනික,භෞතික</p>
+        <div class="teacher-image-container">
+          <img src="janith.jpg" alt="Teacher" class="teacher-image rounded-full object-cover">
+        </div>
           <div class="grade-badge px-4 py-1 bg-blue-100 text-blue-800 text-xs sm:text-sm font-medium">
             Grades 6-11
           </div>
@@ -201,11 +253,12 @@
       <!-- ICT -->
       <a href="ict.html" class="subject-card">
         <div class="card-content flex flex-col items-center">
-          <div class="subject-icon-container bg-purple-100 p-5 rounded-full mb-6">
-            <img src="https://cdn-icons-png.flaticon.com/512/1086/1086741.png" alt="ICT" class="w-16 h-16 sm:w-20 sm:h-20 subject-icon">
-          </div>
           <h2 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-2">ICT</h2>
           <p class="text-sm sm:text-base text-gray-600 text-center mb-4">තොරතුරු හා සන්නිවේදන තාක්ෂණය</p>
+          <div class="teacher-image-container">
+            <img src="Akindu.png" alt="Teacher" class="teacher-image rounded-full object-cover">
+          </div>
+
           <div class="grade-badge px-4 py-1 bg-purple-100 text-purple-800 text-xs sm:text-sm font-medium">
             Grades 6-11
           </div>
@@ -215,20 +268,27 @@
       </a>
       
       <!-- Mathematics -->
-      <a href="maths.html" class="subject-card">
-        <div class="card-content flex flex-col items-center">
-          <div class="subject-icon-container bg-indigo-100 p-5 rounded-full mb-6">
-            <img src="https://cdn-icons-png.flaticon.com/512/2589/2589670.png" alt="Mathematics" class="w-16 h-16 sm:w-20 sm:h-20 subject-icon">
-          </div>
-          <h2 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-2">ගණිතය</h2>
-          <p class="text-sm sm:text-base text-gray-600 text-center mb-4">සංඛ්‍යා, ආකෘති හා අවකාශය පිළිබඳ අධ්‍යයනය</p>
-          <div class="grade-badge px-4 py-1 bg-indigo-100 text-indigo-800 text-xs sm:text-sm font-medium">
-            Grades 6-11
-          </div>
+  <a href="maths.html" class="subject-card group relative overflow-hidden">
+    <div class="card-content flex flex-col items-center">
+      <h2 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-2">ගණිතය</h2>
+      <p class="text-sm sm:text-base text-gray-600 text-center mb-4">ගණිත සංකල්ප පිළිබඳ අධ්‍යයනය</p>
+      
+      <div class="teacher-image-container relative mb-3">
+        <img src="janith2.jpg" alt="Teacher" 
+            class="teacher-image rounded-full object-cover transition-transform duration-300 group-hover:scale-110">
+        <div class="teacher-name-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <span class="teacher-name">Janith Perera</span>
         </div>
-        <div class="card-decoration bg-indigo-200 -bottom-10 -right-10"></div>
-        <div class="card-decoration bg-blue-200 -top-10 -left-10"></div>
-      </a>
+      </div>
+
+      <div class="grade-badge px-4 py-1 bg-indigo-100 text-indigo-800 text-xs sm:text-sm font-medium rounded-full">
+        Grades 6-11
+      </div>
+    </div>
+    
+    <div class="card-decoration bg-indigo-200 -bottom-10 -right-10"></div>
+    <div class="card-decoration bg-blue-200 -top-10 -left-10"></div>
+  </a>
     </div>
   </div>
 
