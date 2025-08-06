@@ -7,9 +7,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
-      animation: gradientBG 10s ease infinite;
       background: linear-gradient(-45deg, #d1fae5, #a7f3d0, #6ee7b7, #34d399);
       background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     @keyframes gradientBG {
@@ -17,51 +17,46 @@
       50% {background-position: 100% 50%;}
       100% {background-position: 0% 50%;}
     }
-    .floating {
-      animation: float 3s ease-in-out infinite;
-    }
-    @keyframes float {
-      0% { transform: translatey(0px); }
-      50% { transform: translatey(-10px); }
-      100% { transform: translatey(0px); }
-    }
-    .bubbles {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      overflow: hidden;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-    }
-    .bubble {
-      position: absolute;
-      bottom: -100px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 50%;
-      animation: rise 15s infinite ease-in;
-    }
-    @keyframes rise {
-      0% {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-1200px) scale(0.5);
-        opacity: 0;
-      }
-    }
-    .grade-card {
+    .science-card {
       transition: all 0.3s ease;
       position: relative;
-      z-index: 1;
+      overflow: hidden;
     }
-    .grade-card:hover {
-      transform: translateY(-5px) scale(1.05);
+    .science-card:hover {
+      transform: translateY(-5px);
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     }
-
+    .science-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, #10b981, #3b82f6, #10b981);
+      background-size: 200% 200%;
+      animation: gradientBar 3s ease infinite;
+    }
+    @keyframes gradientBar {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    .science-icon {
+      transition: transform 0.3s ease;
+    }
+    .science-card:hover .science-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% {transform: scale(1);}
+      50% {transform: scale(1.05);}
+      100% {transform: scale(1);}
+    }
+    
     /* Mobile vertical layout */
     @media (max-width: 767px) {
       .cards-container {
@@ -73,7 +68,7 @@
         margin: 0 auto;
         padding: 0 16px;
       }
-      .grade-card {
+      .science-card {
         width: 100%;
       }
     }
@@ -91,88 +86,68 @@
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-start py-8 relative overflow-hidden px-4">
-  <div class="bubbles">
-    <!-- Bubbles will be generated dynamically with JavaScript -->
-  </div>
-  
-  <div class="text-center z-10 w-full mb-8">
+<body class="min-h-screen flex flex-col items-center justify-start py-8 px-4">
+  <div class="text-center mb-8 max-w-2xl">
     <h1 class="text-4xl md:text-5xl font-bold mb-4 text-green-800">විද්‍යාව - Grades</h1>
-    <p class="text-green-700">Select your grade to access learning materials</p>
+    <p class="text-green-700 text-lg">Select your grade to explore science learning resources</p>
+    <div class="mt-4 h-1 bg-green-200 rounded-full w-24 mx-auto"></div>
   </div>
   
-  <div class="cards-container z-10">
-    <a href="https://wa.me/111111111" class="grade-card bg-white rounded-xl shadow-lg p-6 hover:scale-105 transition-all duration-300 flex flex-col items-center">
+  <div class="cards-container">
+    <a href="https://wa.me/111111111" class="science-card bg-white rounded-lg shadow-lg p-6 hover:scale-105 flex flex-col items-center">
       <div class="bg-green-100 p-4 rounded-full mb-4">
-        <img src="https://cdn-icons-png.flaticon.com/512/201/201623.png" alt="Grade 6" class="w-16 h-16">
+        <img src="https://cdn-icons-png.flaticon.com/512/201/201623.png" alt="Grade 6" class="w-16 h-16 science-icon">
       </div>
-      <p class="mt-2 text-center font-semibold text-green-800">Grade 6</p>
-      <p class="text-sm text-gray-500 mt-1 text-center">Basic Science</p>
+      <p class="mt-2 text-center font-semibold text-green-800 text-lg">Grade 6</p>
+      <p class="text-sm text-green-600 mt-1 text-center">Basic Science</p>
+      <div class="mt-3 px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">
+        Introduction
+      </div>
     </a>
     
-    <a href="https://wa.me/222222222" class="grade-card bg-white rounded-xl shadow-lg p-6 hover:scale-105 transition-all duration-300 flex flex-col items-center">
+    <a href="https://wa.me/222222222" class="science-card bg-white rounded-lg shadow-lg p-6 hover:scale-105 flex flex-col items-center">
       <div class="bg-green-100 p-4 rounded-full mb-4">
-        <img src="https://cdn-icons-png.flaticon.com/512/201/201623.png" alt="Grade 7" class="w-16 h-16">
+        <img src="https://cdn-icons-png.flaticon.com/512/201/201623.png" alt="Grade 7" class="w-16 h-16 science-icon">
       </div>
-      <p class="mt-2 text-center font-semibold text-green-800">Grade 7</p>
-      <p class="text-sm text-gray-500 mt-1 text-center">General Science</p>
+      <p class="mt-2 text-center font-semibold text-green-800 text-lg">Grade 7</p>
+      <p class="text-sm text-green-600 mt-1 text-center">General Science</p>
+      <div class="mt-3 px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">
+        Fundamentals
+      </div>
     </a>
     
-    <a href="https://wa.me/333333333" class="grade-card bg-white rounded-xl shadow-lg p-6 hover:scale-105 transition-all duration-300 flex flex-col items-center">
+    <a href="https://wa.me/333333333" class="science-card bg-white rounded-lg shadow-lg p-6 hover:scale-105 flex flex-col items-center">
       <div class="bg-green-100 p-4 rounded-full mb-4">
-        <img src="https://cdn-icons-png.flaticon.com/512/201/201623.png" alt="Grade 8" class="w-16 h-16">
+        <img src="https://cdn-icons-png.flaticon.com/512/201/201623.png" alt="Grade 8" class="w-16 h-16 science-icon">
       </div>
-      <p class="mt-2 text-center font-semibold text-green-800">Grade 8</p>
-      <p class="text-sm text-gray-500 mt-1 text-center">Physical Science</p>
+      <p class="mt-2 text-center font-semibold text-green-800 text-lg">Grade 8</p>
+      <p class="text-sm text-green-600 mt-1 text-center">Physical Science</p>
+      <div class="mt-3 px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">
+        Physics/Chemistry
+      </div>
     </a>
     
-    <a href="https://wa.me/444444444" class="grade-card bg-white rounded-xl shadow-lg p-6 hover:scale-105 transition-all duration-300 flex flex-col items-center">
+    <a href="https://wa.me/444444444" class="science-card bg-white rounded-lg shadow-lg p-6 hover:scale-105 flex flex-col items-center pulse">
       <div class="bg-green-100 p-4 rounded-full mb-4">
-        <img src="https://cdn-icons-png.flaticon.com/512/201/201623.png" alt="Grade 9" class="w-16 h-16">
+        <img src="https://cdn-icons-png.flaticon.com/512/201/201623.png" alt="Grade 9" class="w-16 h-16 science-icon">
       </div>
-      <p class="mt-2 text-center font-semibold text-green-800">Grade 9</p>
-      <p class="text-sm text-gray-500 mt-1 text-center">Advanced Science</p>
+      <p class="mt-2 text-center font-semibold text-green-800 text-lg">Grade 9</p>
+      <p class="text-sm text-green-600 mt-1 text-center">Advanced Science</p>
+      <div class="mt-3 px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">
+        Biology Focus
+      </div>
     </a>
   </div>
 
-  <script>
-    // Generate random bubbles dynamically
-    const bubblesContainer = document.querySelector('.bubbles');
-    const bubbleCount = window.innerWidth < 768 ? 15 : 25;
-    
-    for (let i = 0; i < bubbleCount; i++) {
-      const bubble = document.createElement('div');
-      bubble.classList.add('bubble');
-      
-      // Random size between 10px and 60px (smaller on mobile)
-      const size = window.innerWidth < 768 ? 
-        Math.floor(Math.random() * 30) + 10 : 
-        Math.floor(Math.random() * 40) + 20;
-      
-      // Random position
-      const left = Math.floor(Math.random() * 100);
-      
-      // Random animation delay and duration
-      const delay = Math.random() * 5;
-      const duration = Math.floor(Math.random() * 10) + 10;
-      
-      bubble.style.width = `${size}px`;
-      bubble.style.height = `${size}px`;
-      bubble.style.left = `${left}%`;
-      bubble.style.animationDelay = `${delay}s`;
-      bubble.style.animationDuration = `${duration}s`;
-      
-      bubblesContainer.appendChild(bubble);
-    }
-
-    // Reload on orientation change for better layout
-    window.addEventListener('orientationchange', function() {
-      setTimeout(() => {
-        window.location.reload();
-      }, 500);
-    });
-  </script>
-
-  
+  <div class="mt-12 text-center text-green-700 text-sm">
+    <p>Need help? Contact our Science support team</p>
+    <div class="flex justify-center space-x-4 mt-2">
+      <a href="#" class="hover:text-green-900 transition">Email</a>
+      <span>•</span>
+      <a href="#" class="hover:text-green-900 transition">WhatsApp</a>
+      <span>•</span>
+      <a href="#" class="hover:text-green-900 transition">Help Center</a>
+    </div>
+  </div>
 </body>
 </html>
