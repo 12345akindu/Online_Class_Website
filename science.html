@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Science Grades</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      animation: gradientBG 10s ease infinite;
+      background: linear-gradient(-45deg, #d1fae5, #a7f3d0, #6ee7b7, #34d399);
+      background-size: 400% 400%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    .floating {
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0% { transform: translatey(0px); }
+      50% { transform: translatey(-10px); }
+      100% { transform: translatey(0px); }
+    }
+    .bubbles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+    .bubble {
+      position: absolute;
+      bottom: -100px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      animation: rise 15s infinite ease-in;
+    }
+    @keyframes rise {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-1200px) scale(0.5);
+        opacity: 0;
+      }
+    }
+    .grade-card {
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+    .grade-card:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center relative overflow-hidden p-4">
+  <div class="bubbles">
+    <!-- Bubbles will be generated dynamically with JavaScript -->
+  </div>
+  
+  <div class="text-center z-10">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4 text-green-800">විද්‍යාව - Grades</h1>
+    <p class="text-green-700 mb-8">Select your grade to access learning materials</p>
+  </div>
+  
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-6 z-10 max-w-4xl w-full">
+    <a href="https://wa.me/111111111" class="grade-card bg-white rounded-xl shadow-lg p-6 hover:scale-105 transition-all duration-300 flex flex-col items-center">
+      <div class="bg-green-100 p-4 rounded-full mb-4">
+        <img src="https://cdn-icons-png.flaticon.com/512/201/201623.png" alt="Grade 6" class="w-16 h-16">
+      </div>
+      <p class="mt-2 text-center font-semibold text-green-800">Grade 6</p>
+      <p class="text-sm text-gray-500 mt-1 text-center">Basic Science</p>
+    </a>
+    
+    <a href="https://wa.me/222222222" class="grade-card bg-white rounded-xl shadow-lg p-6 hover:scale-105 transition-all duration-300 flex flex-col items-center">
+      <div class="bg-green-100 p-4 rounded-full mb-4">
+        <img src="https://cdn-icons-png.flaticon.com/512/201/201623.png" alt="Grade 7" class="w-16 h-16">
+      </div>
+      <p class="mt-2 text-center font-semibold text-green-800">Grade 7</p>
+      <p class="text-sm text-gray-500 mt-1 text-center">General Science</p>
+    </a>
+    
+    <a href="https://wa.me/333333333" class="grade-card bg-white rounded-xl shadow-lg p-6 hover:scale-105 transition-all duration-300 flex flex-col items-center">
+      <div class="bg-green-100 p-4 rounded-full mb-4">
+        <img src="https://cdn-icons-png.flaticon.com/512/201/201623.png" alt="Grade 8" class="w-16 h-16">
+      </div>
+      <p class="mt-2 text-center font-semibold text-green-800">Grade 8</p>
+      <p class="text-sm text-gray-500 mt-1 text-center">Physical Science</p>
+    </a>
+    
+    <a href="https://wa.me/444444444" class="grade-card bg-white rounded-xl shadow-lg p-6 hover:scale-105 transition-all duration-300 flex flex-col items-center">
+      <div class="bg-green-100 p-4 rounded-full mb-4">
+        <img src="https://cdn-icons-png.flaticon.com/512/201/201623.png" alt="Grade 9" class="w-16 h-16">
+      </div>
+      <p class="mt-2 text-center font-semibold text-green-800">Grade 9</p>
+      <p class="text-sm text-gray-500 mt-1 text-center">Advanced Science</p>
+    </a>
+  </div>
+
+  <script>
+    // Generate random bubbles dynamically
+    const bubblesContainer = document.querySelector('.bubbles');
+    for (let i = 0; i < 15; i++) {
+      const bubble = document.createElement('div');
+      bubble.classList.add('bubble');
+      
+      // Random size between 20px and 60px
+      const size = Math.floor(Math.random() * 40) + 20;
+      
+      // Random position
+      const left = Math.floor(Math.random() * 100);
+      
+      // Random animation delay and duration
+      const delay = Math.random() * 5;
+      const duration = Math.floor(Math.random() * 10) + 10;
+      
+      bubble.style.width = `${size}px`;
+      bubble.style.height = `${size}px`;
+      bubble.style.left = `${left}%`;
+      bubble.style.animationDelay = `${delay}s`;
+      bubble.style.animationDuration = `${duration}s`;
+      
+      bubblesContainer.appendChild(bubble);
+    }
+  </script>
+</body>
+</html>

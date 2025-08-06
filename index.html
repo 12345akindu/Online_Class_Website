@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subject Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(-45deg, #e0f2fe, #c7d2fe, #ddd6fe, #e9d5ff);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    .subject-card {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transform-style: preserve-3d;
+      position: relative;
+      overflow: hidden;
+    }
+    .subject-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    .subject-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6, #3b82f6);
+      background-size: 200% 200%;
+      animation: gradientBar 3s ease infinite;
+    }
+    @keyframes gradientBar {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    .subject-icon {
+      transition: all 0.3s ease;
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+    }
+    .subject-card:hover .subject-icon {
+      transform: rotate(5deg) scale(1.1);
+    }
+    .floating {
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+    .bubbles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+    .bubble {
+      position: absolute;
+      bottom: -100px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      animation: rise 15s infinite ease-in;
+    }
+    @keyframes rise {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-1000px) scale(0.5);
+        opacity: 0;
+      }
+    }
+    
+    /* Mobile-specific adjustments */
+    @media (max-width: 640px) {
+      .subject-card {
+        padding: 1.5rem;
+      }
+      .subject-icon {
+        width: 16px;
+        height: 16px;
+      }
+      h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+      p.subtitle {
+        margin-bottom: 2rem;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden">
+  <div class="bubbles"></div>
+  
+  <div class="text-center z-10 max-w-4xl w-full px-4">
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-4 text-gray-800 floating">විෂයයන් සඳහා වෙබ් පිටුව</h1>
+    <p class="text-base sm:text-lg text-gray-600 mb-6 sm:mb-10 subtitle">ඔබගේ ඉගෙනුම් ගමන ආරම්භ කරන්න</p>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+      <!-- Science -->
+      <a href="science.html" class="subject-card bg-white rounded-xl shadow-lg p-6 sm:p-8 flex flex-col items-center">
+        <div class="bg-blue-100 p-4 sm:p-5 rounded-full mb-4 sm:mb-6">
+          <img src="https://cdn-icons-png.flaticon.com/512/201/201623.png" alt="Science" class="w-16 h-16 sm:w-20 sm:h-20 subject-icon">
+        </div>
+        <h2 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-2">විද්‍යාව</h2>
+        <p class="text-sm sm:text-base text-gray-600 text-center">ස්වභාවධර්මය පිළිබඳ අධ්‍යයනය</p>
+        <div class="mt-3 sm:mt-4 px-3 py-1 sm:px-4 sm:py-1 bg-blue-100 text-blue-800 text-xs sm:text-sm font-medium rounded-full">
+          Grades 6-11
+        </div>
+      </a>
+      
+      <!-- ICT -->
+      <a href="ict.html" class="subject-card bg-white rounded-xl shadow-lg p-6 sm:p-8 flex flex-col items-center">
+        <div class="bg-purple-100 p-4 sm:p-5 rounded-full mb-4 sm:mb-6">
+          <img src="https://cdn-icons-png.flaticon.com/512/1086/1086741.png" alt="ICT" class="w-16 h-16 sm:w-20 sm:h-20 subject-icon">
+        </div>
+        <h2 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-2">ICT</h2>
+        <p class="text-sm sm:text-base text-gray-600 text-center">තොරතුරු හා සන්නිවේදන තාක්ෂණය</p>
+        <div class="mt-3 sm:mt-4 px-3 py-1 sm:px-4 sm:py-1 bg-purple-100 text-purple-800 text-xs sm:text-sm font-medium rounded-full">
+          Grades 6-11
+        </div>
+      </a>
+      
+      <!-- Mathematics -->
+      <a href="maths.html" class="subject-card bg-white rounded-xl shadow-lg p-6 sm:p-8 flex flex-col items-center">
+        <div class="bg-indigo-100 p-4 sm:p-5 rounded-full mb-4 sm:mb-6">
+          <img src="https://cdn-icons-png.flaticon.com/512/2589/2589670.png" alt="Mathematics" class="w-16 h-16 sm:w-20 sm:h-20 subject-icon">
+        </div>
+        <h2 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-2">ගණිතය</h2>
+        <p class="text-sm sm:text-base text-gray-600 text-center">සංඛ්‍යා, ආකෘති හා අවකාශය පිළිබඳ අධ්‍යයනය</p>
+        <div class="mt-3 sm:mt-4 px-3 py-1 sm:px-4 sm:py-1 bg-indigo-100 text-indigo-800 text-xs sm:text-sm font-medium rounded-full">
+          Grades 6-11
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    // Generate random bubbles dynamically
+    const bubblesContainer = document.querySelector('.bubbles');
+    const bubbleCount = window.innerWidth < 640 ? 10 : 20; // Fewer bubbles on mobile
+    
+    for (let i = 0; i < bubbleCount; i++) {
+      const bubble = document.createElement('div');
+      bubble.classList.add('bubble');
+      
+      // Random size between 10px and 60px (smaller on mobile)
+      const size = window.innerWidth < 640 ? 
+        Math.floor(Math.random() * 30) + 10 : 
+        Math.floor(Math.random() * 60) + 20;
+      
+      // Random position
+      const left = Math.floor(Math.random() * 100);
+      
+      // Random animation delay and duration
+      const delay = Math.random() * 8;
+      const duration = Math.floor(Math.random() * 10) + 10;
+      
+      bubble.style.width = `${size}px`;
+      bubble.style.height = `${size}px`;
+      bubble.style.left = `${left}%`;
+      bubble.style.animationDelay = `${delay}s`;
+      bubble.style.animationDuration = `${duration}s`;
+      
+      // Random opacity
+      bubble.style.opacity = Math.random() * 0.5 + 0.2;
+      
+      bubblesContainer.appendChild(bubble);
+    }
+    
+    // Adjust layout on orientation change
+    window.addEventListener('orientationchange', function() {
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
+    });
+  </script>
+</body>
+</html>
