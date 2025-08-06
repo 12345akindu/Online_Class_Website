@@ -23,10 +23,15 @@
       transform-style: preserve-3d;
       position: relative;
       overflow: hidden;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     }
     .subject-card:hover {
       transform: translateY(-10px) scale(1.03);
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.08);
     }
     .subject-card::before {
       content: '';
@@ -34,7 +39,7 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 5px;
+      height: 6px;
       background: linear-gradient(90deg, #3b82f6, #8b5cf6, #3b82f6);
       background-size: 200% 200%;
       animation: gradientBar 3s ease infinite;
@@ -44,12 +49,22 @@
       50% {background-position: 100% 50%;}
       100% {background-position: 0% 50%;}
     }
+    .subject-icon-container {
+      transition: all 0.3s ease;
+      border-radius: 50%;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 100%);
+    }
+    .subject-card:hover .subject-icon-container {
+      transform: scale(1.1);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
     .subject-icon {
       transition: all 0.3s ease;
       filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
     }
     .subject-card:hover .subject-icon {
-      transform: rotate(5deg) scale(1.1);
+      transform: rotate(5deg) scale(1.05);
     }
     .floating {
       animation: float 6s ease-in-out infinite;
@@ -87,11 +102,13 @@
       }
     }
     
-    /* Mobile-specific adjustments */
+    /* Mobile-specific adjustments - VERTICAL LAYOUT */
     @media (max-width: 640px) {
       .subject-card {
         padding: 1.5rem;
-        min-width: 280px;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto 20px auto;
       }
       .subject-icon {
         width: 60px;
@@ -104,86 +121,114 @@
       p.subtitle {
         margin-bottom: 2rem;
       }
-      .cards-container {
-        padding-bottom: 2rem;
+      .cards-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 0 16px;
       }
     }
     
-    /* Scrollable container for mobile */
-    .scroll-container {
-      width: 100%;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none; /* Firefox */
-    }
-    .scroll-container::-webkit-scrollbar {
-      display: none; /* Chrome/Safari */
-    }
-    .cards-wrapper {
-      display: inline-flex;
-      padding: 0 1rem;
-    }
-    
-    /* Desktop layout */
+    /* Desktop layout - 3 COLUMN GRID */
     @media (min-width: 641px) {
-      .scroll-container {
-        overflow-x: visible;
-      }
       .cards-wrapper {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 1.5rem;
+        gap: 24px;
         width: 100%;
-        padding: 0;
+        max-width: 1200px;
+        margin: 0 auto;
       }
+      .subject-card {
+        padding: 2rem;
+      }
+    }
+    
+    /* Grade badge */
+    .grade-badge {
+      transition: all 0.3s ease;
+      border-radius: 9999px;
+      font-weight: 600;
+      letter-spacing: 0.025em;
+    }
+    .subject-card:hover .grade-badge {
+      transform: scale(1.05);
+    }
+    
+    /* Card content */
+    .card-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    /* Decorative elements */
+    .card-decoration {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.3;
+      z-index: 0;
     }
   </style>
 </head>
 <body class="min-h-screen flex flex-col items-center justify-start pt-8 pb-16 px-4 relative overflow-x-hidden">
   <div class="bubbles"></div>
   
-  <div class="text-center z-10 w-full max-w-6xl">
+  <div class="text-center z-10 w-full">
     <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-4 text-gray-800 floating">විෂයයන් සඳහා වෙබ් පිටුව</h1>
     <p class="text-base sm:text-lg text-gray-600 mb-6 sm:mb-10 subtitle">ඔබගේ ඉගෙනුම් ගමන ආරම්භ කරන්න</p>
     
-    <div class="scroll-container">
-      <div class="cards-wrapper gap-4 sm:gap-6 md:gap-8 cards-container">
-        <!-- Science -->
-        <a href="science.html" class="subject-card bg-white rounded-xl shadow-lg p-6 sm:p-8 flex flex-col items-center">
-          <div class="bg-blue-100 p-4 sm:p-5 rounded-full mb-4 sm:mb-6">
+    <div class="cards-wrapper">
+      <!-- Science -->
+      <a href="science.html" class="subject-card">
+        <div class="card-content flex flex-col items-center">
+          <div class="subject-icon-container bg-blue-100 p-5 rounded-full mb-6">
             <img src="https://cdn-icons-png.flaticon.com/512/201/201623.png" alt="Science" class="w-16 h-16 sm:w-20 sm:h-20 subject-icon">
           </div>
           <h2 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-2">විද්‍යාව</h2>
-          <p class="text-sm sm:text-base text-gray-600 text-center">ස්වභාවධර්මය පිළිබඳ අධ්‍යයනය</p>
-          <div class="mt-3 sm:mt-4 px-3 py-1 sm:px-4 sm:py-1 bg-blue-100 text-blue-800 text-xs sm:text-sm font-medium rounded-full">
+          <p class="text-sm sm:text-base text-gray-600 text-center mb-4">ස්වභාවධර්මය පිළිබඳ අධ්‍යයනය</p>
+          <div class="grade-badge px-4 py-1 bg-blue-100 text-blue-800 text-xs sm:text-sm font-medium">
             Grades 6-11
           </div>
-        </a>
-        
-        <!-- ICT -->
-        <a href="ict.html" class="subject-card bg-white rounded-xl shadow-lg p-6 sm:p-8 flex flex-col items-center">
-          <div class="bg-purple-100 p-4 sm:p-5 rounded-full mb-4 sm:mb-6">
+        </div>
+        <div class="card-decoration bg-blue-200 -bottom-10 -right-10"></div>
+        <div class="card-decoration bg-purple-200 -top-10 -left-10"></div>
+      </a>
+      
+      <!-- ICT -->
+      <a href="ict.html" class="subject-card">
+        <div class="card-content flex flex-col items-center">
+          <div class="subject-icon-container bg-purple-100 p-5 rounded-full mb-6">
             <img src="https://cdn-icons-png.flaticon.com/512/1086/1086741.png" alt="ICT" class="w-16 h-16 sm:w-20 sm:h-20 subject-icon">
           </div>
           <h2 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-2">ICT</h2>
-          <p class="text-sm sm:text-base text-gray-600 text-center">තොරතුරු හා සන්නිවේදන තාක්ෂණය</p>
-          <div class="mt-3 sm:mt-4 px-3 py-1 sm:px-4 sm:py-1 bg-purple-100 text-purple-800 text-xs sm:text-sm font-medium rounded-full">
+          <p class="text-sm sm:text-base text-gray-600 text-center mb-4">තොරතුරු හා සන්නිවේදන තාක්ෂණය</p>
+          <div class="grade-badge px-4 py-1 bg-purple-100 text-purple-800 text-xs sm:text-sm font-medium">
             Grades 6-11
           </div>
-        </a>
-        
-        <!-- Mathematics -->
-        <a href="maths.html" class="subject-card bg-white rounded-xl shadow-lg p-6 sm:p-8 flex flex-col items-center">
-          <div class="bg-indigo-100 p-4 sm:p-5 rounded-full mb-4 sm:mb-6">
+        </div>
+        <div class="card-decoration bg-purple-200 -bottom-10 -right-10"></div>
+        <div class="card-decoration bg-indigo-200 -top-10 -left-10"></div>
+      </a>
+      
+      <!-- Mathematics -->
+      <a href="maths.html" class="subject-card">
+        <div class="card-content flex flex-col items-center">
+          <div class="subject-icon-container bg-indigo-100 p-5 rounded-full mb-6">
             <img src="https://cdn-icons-png.flaticon.com/512/2589/2589670.png" alt="Mathematics" class="w-16 h-16 sm:w-20 sm:h-20 subject-icon">
           </div>
           <h2 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-2">ගණිතය</h2>
-          <p class="text-sm sm:text-base text-gray-600 text-center">සංඛ්‍යා, ආකෘති හා අවකාශය පිළිබඳ අධ්‍යයනය</p>
-          <div class="mt-3 sm:mt-4 px-3 py-1 sm:px-4 sm:py-1 bg-indigo-100 text-indigo-800 text-xs sm:text-sm font-medium rounded-full">
+          <p class="text-sm sm:text-base text-gray-600 text-center mb-4">සංඛ්‍යා, ආකෘති හා අවකාශය පිළිබඳ අධ්‍යයනය</p>
+          <div class="grade-badge px-4 py-1 bg-indigo-100 text-indigo-800 text-xs sm:text-sm font-medium">
             Grades 6-11
           </div>
-        </a>
-      </div>
+        </div>
+        <div class="card-decoration bg-indigo-200 -bottom-10 -right-10"></div>
+        <div class="card-decoration bg-blue-200 -top-10 -left-10"></div>
+      </a>
     </div>
   </div>
 
@@ -226,33 +271,6 @@
         window.location.reload();
       }, 500);
     });
-    
-
-// Prevent vertical scroll on horizontal swipe (only inside scroll-container)
-const scrollContainer = document.querySelector('.scroll-container');
-let startX, startY;
-
-scrollContainer.addEventListener('touchstart', function(e) {
-  startX = e.touches[0].clientX;
-  startY = e.touches[0].clientY;
-}, false);
-
-scrollContainer.addEventListener('touchmove', function(e) {
-  if (!startX || !startY) return;
-
-  const xDiff = startX - e.touches[0].clientX;
-  const yDiff = startY - e.touches[0].clientY;
-
-  if (Math.abs(xDiff) > Math.abs(yDiff)) {
-    // Horizontal scroll - prevent vertical scroll
-    e.preventDefault();
-    // Manually scroll horizontally
-    scrollContainer.scrollLeft += xDiff;
-    startX = e.touches[0].clientX;
-    startY = e.touches[0].clientY;
-  }
-}, { passive: false });
-// ...existing code...
   </script>
 </body>
 </html>
