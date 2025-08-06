@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="si">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,9 +14,9 @@
       overflow-x: hidden;
     }
     @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
     }
     .subject-card {
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -26,8 +26,7 @@
     }
     .subject-card:hover {
       transform: translateY(-10px) scale(1.03);
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-                  0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     }
     .subject-card::before {
       content: '';
@@ -41,9 +40,9 @@
       animation: gradientBar 3s ease infinite;
     }
     @keyframes gradientBar {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
     }
     .subject-icon {
       transition: all 0.3s ease;
@@ -87,6 +86,8 @@
         opacity: 0;
       }
     }
+    
+    /* Mobile-specific adjustments */
     @media (max-width: 640px) {
       .subject-card {
         padding: 1.5rem;
@@ -107,19 +108,23 @@
         padding-bottom: 2rem;
       }
     }
+    
+    /* Scrollable container for mobile */
     .scroll-container {
       width: 100%;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
+      scrollbar-width: none; /* Firefox */
     }
     .scroll-container::-webkit-scrollbar {
-      display: none;
+      display: none; /* Chrome/Safari */
     }
     .cards-wrapper {
       display: inline-flex;
       padding: 0 1rem;
     }
+    
+    /* Desktop layout */
     @media (min-width: 641px) {
       .scroll-container {
         overflow-x: visible;
@@ -136,17 +141,17 @@
 </head>
 <body class="min-h-screen flex flex-col items-center justify-start pt-8 pb-16 px-4 relative overflow-x-hidden">
   <div class="bubbles"></div>
-
-  <main class="text-center z-10 w-full max-w-6xl">
+  
+  <div class="text-center z-10 w-full max-w-6xl">
     <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-4 text-gray-800 floating">විෂයයන් සඳහා වෙබ් පිටුව</h1>
     <p class="text-base sm:text-lg text-gray-600 mb-6 sm:mb-10 subtitle">ඔබගේ ඉගෙනුම් ගමන ආරම්භ කරන්න</p>
-
-    <section class="scroll-container">
-      <div class="cards-wrapper cards-container">
-        <!-- Science Card -->
-        <a href="science.html" class="subject-card bg-white rounded-xl shadow-lg p-6 sm:p-8 flex flex-col items-center" aria-label="විද්‍යාව subject">
+    
+    <div class="scroll-container">
+      <div class="cards-wrapper gap-4 sm:gap-6 md:gap-8 cards-container">
+        <!-- Science -->
+        <a href="science.html" class="subject-card bg-white rounded-xl shadow-lg p-6 sm:p-8 flex flex-col items-center">
           <div class="bg-blue-100 p-4 sm:p-5 rounded-full mb-4 sm:mb-6">
-            <img src="https://cdn-icons-png.flaticon.com/512/201/201623.png" alt="විද්‍යාව icon" class="w-16 h-16 sm:w-20 sm:h-20 subject-icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/201/201623.png" alt="Science" class="w-16 h-16 sm:w-20 sm:h-20 subject-icon">
           </div>
           <h2 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-2">විද්‍යාව</h2>
           <p class="text-sm sm:text-base text-gray-600 text-center">ස්වභාවධර්මය පිළිබඳ අධ්‍යයනය</p>
@@ -154,11 +159,11 @@
             Grades 6-11
           </div>
         </a>
-
-        <!-- ICT Card -->
-        <a href="ict.html" class="subject-card bg-white rounded-xl shadow-lg p-6 sm:p-8 flex flex-col items-center" aria-label="ICT subject">
+        
+        <!-- ICT -->
+        <a href="ict.html" class="subject-card bg-white rounded-xl shadow-lg p-6 sm:p-8 flex flex-col items-center">
           <div class="bg-purple-100 p-4 sm:p-5 rounded-full mb-4 sm:mb-6">
-            <img src="https://cdn-icons-png.flaticon.com/512/1086/1086741.png" alt="ICT icon" class="w-16 h-16 sm:w-20 sm:h-20 subject-icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/1086/1086741.png" alt="ICT" class="w-16 h-16 sm:w-20 sm:h-20 subject-icon">
           </div>
           <h2 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-2">ICT</h2>
           <p class="text-sm sm:text-base text-gray-600 text-center">තොරතුරු හා සන්නිවේදන තාක්ෂණය</p>
@@ -166,11 +171,11 @@
             Grades 6-11
           </div>
         </a>
-
-        <!-- Mathematics Card -->
-        <a href="maths.html" class="subject-card bg-white rounded-xl shadow-lg p-6 sm:p-8 flex flex-col items-center" aria-label="ගණිතය subject">
+        
+        <!-- Mathematics -->
+        <a href="maths.html" class="subject-card bg-white rounded-xl shadow-lg p-6 sm:p-8 flex flex-col items-center">
           <div class="bg-indigo-100 p-4 sm:p-5 rounded-full mb-4 sm:mb-6">
-            <img src="https://cdn-icons-png.flaticon.com/512/2589/2589670.png" alt="ගණිතය icon" class="w-16 h-16 sm:w-20 sm:h-20 subject-icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/2589/2589670.png" alt="Mathematics" class="w-16 h-16 sm:w-20 sm:h-20 subject-icon">
           </div>
           <h2 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-2">ගණිතය</h2>
           <p class="text-sm sm:text-base text-gray-600 text-center">සංඛ්‍යා, ආකෘති හා අවකාශය පිළිබඳ අධ්‍යයනය</p>
@@ -179,63 +184,75 @@
           </div>
         </a>
       </div>
-    </section>
-  </main>
+    </div>
+  </div>
 
   <script>
-    // Bubble Animation
+    // Generate random bubbles dynamically
     const bubblesContainer = document.querySelector('.bubbles');
     const bubbleCount = window.innerWidth < 640 ? 15 : 25;
-
+    
     for (let i = 0; i < bubbleCount; i++) {
       const bubble = document.createElement('div');
       bubble.classList.add('bubble');
-
+      
+      // Random size between 10px and 60px (smaller on mobile)
       const size = window.innerWidth < 640 ? 
         Math.floor(Math.random() * 40) + 10 : 
         Math.floor(Math.random() * 60) + 20;
-
+      
+      // Random position
       const left = Math.floor(Math.random() * 100);
+      
+      // Random animation delay and duration
       const delay = Math.random() * 8;
       const duration = Math.floor(Math.random() * 15) + 10;
-
+      
       bubble.style.width = `${size}px`;
       bubble.style.height = `${size}px`;
       bubble.style.left = `${left}%`;
       bubble.style.animationDelay = `${delay}s`;
       bubble.style.animationDuration = `${duration}s`;
+      
+      // Random opacity
       bubble.style.opacity = Math.random() * 0.5 + 0.2;
-
+      
       bubblesContainer.appendChild(bubble);
     }
-
-    // Handle swipe behavior
-    const scrollContainer = document.querySelector('.scroll-container');
-    let startX, startY;
-
-    scrollContainer.addEventListener('touchstart', function(e) {
-      startX = e.touches[0].clientX;
-      startY = e.touches[0].clientY;
-    }, false);
-
-    scrollContainer.addEventListener('touchmove', function(e) {
-      if (!startX || !startY) return;
-
-      const xDiff = startX - e.touches[0].clientX;
-      const yDiff = startY - e.touches[0].clientY;
-
-      if (Math.abs(xDiff) > Math.abs(yDiff)) {
-        e.preventDefault();
-        scrollContainer.scrollLeft += xDiff;
-        startX = e.touches[0].clientX;
-        startY = e.touches[0].clientY;
-      }
-    }, { passive: false });
-
-    // Reload on orientation change
-    window.addEventListener('orientationchange', () => {
-      setTimeout(() => window.location.reload(), 500);
+    
+    // Adjust layout on orientation change
+    window.addEventListener('orientationchange', function() {
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
     });
+    
+
+// Prevent vertical scroll on horizontal swipe (only inside scroll-container)
+const scrollContainer = document.querySelector('.scroll-container');
+let startX, startY;
+
+scrollContainer.addEventListener('touchstart', function(e) {
+  startX = e.touches[0].clientX;
+  startY = e.touches[0].clientY;
+}, false);
+
+scrollContainer.addEventListener('touchmove', function(e) {
+  if (!startX || !startY) return;
+
+  const xDiff = startX - e.touches[0].clientX;
+  const yDiff = startY - e.touches[0].clientY;
+
+  if (Math.abs(xDiff) > Math.abs(yDiff)) {
+    // Horizontal scroll - prevent vertical scroll
+    e.preventDefault();
+    // Manually scroll horizontally
+    scrollContainer.scrollLeft += xDiff;
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+  }
+}, { passive: false });
+// ...existing code...
   </script>
 </body>
 </html>
